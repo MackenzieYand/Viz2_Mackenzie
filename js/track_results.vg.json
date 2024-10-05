@@ -1,48 +1,69 @@
-  {
+{
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "data": {"url": "https://raw.githubusercontent.com/MackenzieYand/Viz2_Mackenzie/blob/main/data/Total.csv"},
+    "data": {
+      "url": "https://raw.githubusercontent.com/MackenzieYand/Viz2_Mackenzie/main/data/Total.csv"
+    },
     "width": 650,
     "height": 400,
-    "params":[
+    "params": [
       {
-        "name":"Type_selection",
-        "bind":{
-          "input":"select",
-          "options":[null, "Total","School","Futsal","Social","Other"],
-          "labels": ["Total","School","Futsal","Social","Other"],
-          "name":"Catergory Selection: "
+        "name": "Type_selection",
+        "value": "Total",  
+        "bind": {
+          "input": "select",
+          "options": ["Total", "Outdoor", "Futsal", "Social", "School", "Other"],  
+          "name": "Category Selection: "
         }
       }
     ],
     "transform": [
-      {"filter":"Type_selection == null || datum.Type == Type_selection"}
+      {
+        "filter": "datum.Type == Type_selection"  
+      }
     ],
-
-    "encoding": {"x": {"field": "Year", "type": "temporal"}},
+    "encoding": {
+      "x": {
+        "field": "Year",
+        "type": "temporal",
+        "title": "Year"
+      }
+    },
     "layer": [
       {
         "mark": "line",
         "encoding": {
-          "color": {"field": "Type", "type": "nominal","title":"Type"},
-          "y": {"field": "Count", "type": "quantitative","title":"Count"},
-          "strokeWidth": {"value":3}
+          "y": {
+            "field": "Count",
+            "type": "quantitative",
+            "title": "Count"
+          },
+          "color": {
+            "field": "Type_1",
+            "type": "nominal",
+            "legend": null  
+          }
         }
       },
       {
-        "mark":"point",
+        "mark": "point",
         "encoding": {
-          "color": {"field": "Type", "type": "nominal"},
-          "y": {"field": "Count", "type": "quantitative"},
-          "strokeWidth": {"value":6},
-          "tooltip":[
-            {"field":"Type", "type": "nominal","title":"Type"},
-            {"field":"Year","type": "temporal","timeUnit":"year", "title":"Year"},
-            {"field":"Count","type":"quantitative"}
+          "y": {
+            "field": "Count",
+            "type": "quantitative"
+          },
+          "color": {
+            "field": "Type_1",
+            "type": "nominal"
+          },
+          "tooltip": [
+            {"field": "Type_1", "type": "nominal", "title": "Type"},
+            {"field": "Year", "type": "temporal", "timeUnit": "year", "title": "Year"},
+            {"field": "Count", "type": "quantitative", "title": "Count"},
+            {"field": "%Men", "type": "quantitative", "title": "% Men", "format": ".2%"},
+            {"field": "%Women", "type": "quantitative", "title": "% Women", "format": ".2%"}
           ]
         }
       }
-        
-      
     ]
   }
   
