@@ -20,59 +20,34 @@
     <!-- CSS file -->
     <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
 </head>
-<!-- <body>
-    <header>
-        <h1>Football Australia</h1>
-        <h2>2023 National Summary</h2>
-    </header>
-    <main>
-        <section class="highlight-box">
-            <h3>Total Participation</h3>
-            <p class="large-number">1,715,441</p>
-            <p class="growth">12% Growth on 2022</p>
-        </section>
-        <section class="content">
-            <div class="pure-g">
-                <div class="pure-u-1-2">
-                    <h3>Outdoor Affiliated Football</h3>
-                    <div id="symbol_map"></div>
-                </div>
-                <div class="pure-u-1-2">
-                    <h3>Participation Breakdown</h3>
-                    -- Add your visualization or content here --
-                </div>
-            </div>
-        </section>
-    </main>
-    <script src="your-visualization-script.js"></script> -->
-
 <body>
     <header>
         <h1>Australian Soccer</h1>
         <h2>The Nations Most Played Sport</h2>
     </header>
     <main>
-        <section class="highlight-box">
-            <h3>Total Participation</h3>
-            <p class="large-number">1,715,441</p>
-            <p class="growth">12% Growth on 2022</p>
+        <section class="pure-u-1-2">
+            <h3>Participation By State</h3>
+            <div id="vis1" class="vis-container"></div>
         </section>
         <section class="content">
             <div class="pure-g">
-                <div class="pure-u-1-2">
-                    <h3>Outdoor Affiliated Football</h3>
-                    <div id="symbol_map"></div>
-                    <div id="vis1" class="vis-container"></div>
+                <div class="highlight-box">
+                    <h3>Participation Breakdown Country Wide</h3>
+                    <h2>The Nations Most Played Sport</h2>
+                    <div id="vis2" class="vis-container"></div>
                 </div>
-                <div class="pure-u-1-2">
-                    <h3>Participation Breakdown</h3>
+                <div ></div>
+                <div class="highlight-box">
+                    <h3>Participation Breakdown Country Wide</h3>
+                    <h2>The Nations Most Played Sport</h2>
                     <div id="vis2" class="vis-container"></div>
                 </div>
             </div>
         </section>
         <script type="text/javascript">
             var specVis1 = "js/map.vg.json";
-            var specVis2 = "js/track_results.vg.json";
+            var specVis2 = "js/participation.vg.json";
     
             vegaEmbed('#vis1', specVis1, { "actions": false });
     
@@ -80,50 +55,6 @@
             // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
             }).catch(console.error);
         </script>
-    <!-- <div class="page">
-
-        <-- pure grid group --
-        <div class="pure-g">
-        <div class="pure-u-1-1">
-            <p class="p3">Soccer has become Australias most played sport as of 2018 and only continues to grow.</p>
-            <p class="p3">Track and field events is considered to be one of the earliest forms of athletics, and has been part of the Olympic events from the beginning.</p>
-        </div>
-        </div>
-        <-- end pure grid group --
-
-        <-- pure grid group --
-        <div class="pure-g">
-        <div class="pure-u-1-2">
-            <div class="description description-left">
-            <h2 class="h2">Country Medal Tally</h2>
-            <p class="p3">Here we have a summary on the performance of Olympic-competing countries from 1896-2016. Please click on a country for a break down of what types of medals they have won.</p>
-            </div>
-        </div>
-        <div class="pure-u-1-2">
-            <div id="vis1" class="vis-container"></div>
-        </div>
-        </div>
-        <-- end pure grid group --
-
-        <-- pure grid group --
-        <div class="pure-g">
-        <div class="pure-u-1-2">
-            <div id="vis2" class="vis-container"></div>
-        </div>
-        <div class="pure-u-1-2">
-            <div class="description description-right">
-            <h2 class="h2">Comparisons of track results over the years</h2>
-            <p class="p3">Over almost two centuries, mankind has unlocked many incredible achievements, including improvements in physical performance. On the left we can compare the results of the winners of the Olympic track events across the years. Please select an Event in the <i>Event Selection</i> drop-down list, to find out more.
-            </p>
-            <p class="p3"><b>Note: </b>You may notice that there is no data between 1912-1920, and 1936-1948. This is due to World War One and World War Two causing the Olympics to be cancelled.</p>
-            </div>
-        </div>
-
-        </div>
-        <-- end pure grid group --
-
-
-    </div> end page -->
     </main>
 
 </body>

@@ -1,0 +1,131 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+      "url": "https://raw.githubusercontent.com/MackenzieYand/Viz2_Mackenzie/main/data/Total.csv"
+    },
+    "width": 400,
+    "height": 400,
+    "params": [
+      {
+        "name": "Type_selection",
+        "value": "Total", 
+        "bind": {
+          "input": "select",
+          "options": ["Total", "Outdoor", "Futsal", "Social", "School", "Other"],  
+          "name": "Category Selection: "
+        }
+      }
+    ],
+    "transform": [
+      {"filter": "datum.Type == Type_selection"},  
+      {
+        "calculate": "round(datum.Count * datum['%Men'])",  
+        "as": "Men_Count"
+      },
+      {
+        "calculate": "round(datum.Count * datum['%Women'])",  
+        "as": "Women_Count"
+      },
+      {
+        "fold": ["Count", "Men_Count", "Women_Count"], 
+        "as": ["Legend_Type", "Value"]
+      },
+      {
+        "calculate": "datum.Legend_Type == 'Count' ? 'Total' : datum.Legend_Type == 'Men_Count' ? 'Men' : 'Women'", 
+        "as": "Legend_Label"
+      }
+    ],
+    "encoding": {
+      "x": {
+        "field": "Year",
+        "type": "temporal",
+        "title": "Year"
+      }
+    },
+    "layer": [
+      {
+        "mark":{
+            "type": "line",
+            "strokeWidth": 5
+        },
+        "encoding": {
+          "y": {
+            "field": "Count", 
+            "type": "quantitative",
+            "title": "Count"
+          },
+          "color": {
+            "value": "#006747"
+          },
+          "tooltip": [
+            {"field": "Type_1", "type": "nominal", "title": "Catergory"},
+            {"field": "Year", "type": "temporal", "timeUnit": "year", "title": "Year"},
+            {"field": "Count", "type": "quantitative", "title": "Total Count"}
+          ]
+        }
+      },
+      {
+        "mark":{
+            "type": "line",
+            "strokeWidth": 3
+        },
+        "encoding": {
+          "y": {
+            "field": "Men_Count", 
+            "type": "quantitative"
+          },
+          "color": {
+            "value": "blue"  
+          },
+          "tooltip": [
+            {"field": "Type_1", "type": "nominal", "title": "Catergory"},
+            {"field": "Year", "type": "temporal", "timeUnit": "year", "title": "Year"},
+            {"field": "Men_Count", "type": "quantitative", "title": "Men Count"}
+          ]
+        }
+      },
+      {
+        "mark":{
+            "type": "line",
+            "strokeWidth": 3
+        },
+        "encoding": {
+          "y": {
+            "field": "Women_Count",  
+            "type": "quantitative"
+          },
+          "color": {
+            "value": "deeppink"  
+          },
+          "tooltip": [
+            {"field": "Type_1", "type": "nominal", "title": "Catergory"},
+            {"field": "Year", "type": "temporal", "timeUnit": "year", "title": "Year"},
+            {"field": "Women_Count", "type": "quantitative", "title": "Women Count"}
+          ]
+        }
+      }
+      
+    ],
+    "config": {
+        "background": "#ffd700",  
+        "title": {
+            "color": "#006747",  
+            "font": "'Roboto', sans-serif", 
+            "fontSize": 14  
+        },
+        "axis": {
+            "labelFont": "'Roboto', sans-serif",  
+            "labelColor": "#006747",  
+            "titleFont": "'Roboto', sans-serif", 
+            "titleColor": "#006747"  
+        },
+        "legend": {
+            "labelFont": "'Roboto', sans-serif",
+            "labelColor": "#006747" ,  
+            "titleFont": "'Roboto', sans-serif",
+            "titleColor": "#006747"  
+        }
+    }
+    
+}
+  
