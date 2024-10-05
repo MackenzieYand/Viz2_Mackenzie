@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "autosize": {"resize": true},
   "data": {
-    "url": "https://raw.githubusercontent.com/MackenzieYand/FIT3179/main/js/ne_110m_admin_0_countries.topojson",
+    "url": "https://raw.githubusercontent.com/MackenzieYand/Viz2_Mackenzie/main/js/ne_110m_admin_0_countries.topojson",
     "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
   },
   "vconcat": [

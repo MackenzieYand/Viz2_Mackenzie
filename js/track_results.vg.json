@@ -1,21 +1,21 @@
   {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "data": {"url": "https://raw.githubusercontent.com/charmainechin/FIT3179/main/data/track_results_filtered.csv"},
+    "data": {"url": "https://raw.githubusercontent.com/MackenzieYand/Viz2_Mackenzie/main/data/Total.csv"},
     "width": 650,
     "height": 400,
     "params":[
       {
-        "name":"Event_selection",
+        "name":"Type_selection",
         "bind":{
           "input":"select",
-          "options":[null, "100M","200M","400M","800M"],
-          "labels": ["Show All","100M","200M","400M","800M"],
-          "name":"Event Selection: "
+          "options":[null, "Total","School","Futsal","Social","Other"],
+          "labels": ["Total","School","Futsal","Social","Other"],
+          "name":"Catergory Selection: "
         }
       }
     ],
     "transform": [
-      {"filter":"Event_selection == null || datum.Event == Event_selection"}
+      {"filter":"Type_selection == null || datum.Type == Type_selection"}
     ],
 
     "encoding": {"x": {"field": "Year", "type": "temporal"}},
@@ -23,22 +23,21 @@
       {
         "mark": "line",
         "encoding": {
-          "color": {"field": "Event_1", "type": "nominal","title":"Event"},
-          "y": {"field": "Result", "type": "quantitative","title":"Result (s)"},
+          "color": {"field": "Type", "type": "nominal","title":"Type"},
+          "y": {"field": "Count", "type": "quantitative","title":"Count"},
           "strokeWidth": {"value":3}
         }
       },
       {
         "mark":"point",
         "encoding": {
-          "color": {"field": "Event_1", "type": "nominal"},
-          "y": {"field": "Result", "type": "quantitative"},
+          "color": {"field": "Type", "type": "nominal"},
+          "y": {"field": "Count", "type": "quantitative"},
           "strokeWidth": {"value":6},
           "tooltip":[
-            {"field":"Event_1", "type": "nominal","title":"Event"},
+            {"field":"Type", "type": "nominal","title":"Type"},
             {"field":"Year","type": "temporal","timeUnit":"year", "title":"Year"},
-            {"field":"Name","type":"nominal"},
-            {"field":"Result","type":"quantitative"}
+            {"field":"Count","type":"quantitative"}
           ]
         }
       }
