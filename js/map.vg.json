@@ -20,7 +20,8 @@
         "center": [130, -28],
         "scale": 500
     },
-    "layer": [{
+    "layer": [
+        {
             "data": {
                 "url": "https://raw.githubusercontent.com/MackenzieYand/Viz2_Mackenzie/main/js/states.geojson",
                 "format": {
@@ -28,23 +29,28 @@
                     "property": "features"
                 }
             },
-            "transform": [{
-                "calculate": "'Data is not available in ' + datum.properties.STATE_NAME",
-                "as": "note"
-            }],
+            "transform": [
+                {
+                    "calculate": "'Data is not available in ' + datum.properties.STATE_NAME",
+                    "as": "note"
+                }
+            ],
             "mark": {
                 "type": "geoshape",
                 "fill": "#d00505",
                 "stroke": "white",
                 "strokeWidth": 1
             },
-            "encoding": { "tooltip": { "field": "note" } }
+            "encoding": {
+                "tooltip": { "field": "note" }
+            }
         },
         {
             "data": {
                 "url": "https://raw.githubusercontent.com/MackenzieYand/Viz2_Mackenzie/main/data/State_totals.csv"
             },
-            "transform": [{
+            "transform": [
+                {
                     "lookup": "State_1",
                     "from": {
                         "data": {
@@ -54,23 +60,20 @@
                                 "property": "features"
                             }
                         },
-                        "key": "properties.STATE_NAME"
-                    },
-                    "as": "geo"
+                        "key": "properties.STATE_NAME",
+                        "fields": ["geometry"]
+                    }
                 },
-                { "filter": "datum.Year == Year_selection" }
+                { "filter": "datum.Year == Year_selection" },
+                { "calculate": "datum.Count", "as": "Participation" }
             ],
             "mark": { "type": "geoshape", "stroke": "#fff", "strokeWidth": 0.5 },
             "encoding": {
-                "shape": { "field": "geo", "type": "geojson" },
                 "color": {
-                    "field": "Count",
+                    "field": "Participation",
                     "type": "quantitative",
                     "scale": {
-                        "domain": [
-                            8000,
-                            1100000
-                        ],
+                        "domain": [8000, 1100000],
                         "scheme": "yellowgreen"
                     },
                     "legend": { "format": ".2s" }
@@ -78,7 +81,7 @@
                 "tooltip": [
                     { "field": "State_1", "type": "nominal", "title": "State" },
                     {
-                        "field": "Count",
+                        "field": "Participation",
                         "type": "quantitative",
                         "title": "Total State Participation",
                         "format": ","
