@@ -65,7 +65,7 @@
             }
           },
           { "filter": "datum.Year == Year_selection" },
-          { "calculate": "datum.Count/datum.Population", "as": "Participation" }
+          { "calculate": "(datum.Count/datum.Population)*100", "as": "Participation" }
         ],
         "mark": { "type": "geoshape", "stroke": "#fff", "strokeWidth": 0.5 },
         "encoding": {
@@ -74,7 +74,7 @@
             "field": "Participation",
             "type": "quantitative",
             "scale": {
-              "domain": [8000, 1100000],
+              "domain": [0, 100],
               "scheme": "yellowgreen"
             },
             "legend": { "format": ".2s" }
@@ -84,7 +84,7 @@
             {
               "field": "Participation",
               "type": "quantitative",
-              "title": "Total State Participation",
+              "title": "State Participation per 100 people",
               "format": ","
             },
             { "field": "Year", "type": "quantitative", "title": "Year" }
