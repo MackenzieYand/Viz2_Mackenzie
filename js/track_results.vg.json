@@ -1,6 +1,6 @@
   {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "data": {"url": "https://raw.githubusercontent.com/MackenzieYand/Viz2_Mackenzie/main/data/Total.csv"},
+    "data": {"url": "https://raw.githubusercontent.com/MackenzieYand/Viz2_Mackenzie/blob/main/data/Total.csv"},
     "width": 650,
     "height": 400,
     "params":[
