@@ -1,0 +1,49 @@
+  {
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {"url": "https://raw.githubusercontent.com/charmainechin/FIT3179/main/data/track_results_filtered.csv"},
+    "width": 650,
+    "height": 400,
+    "params":[
+      {
+        "name":"Event_selection",
+        "bind":{
+          "input":"select",
+          "options":[null, "100M","200M","400M","800M"],
+          "labels": ["Show All","100M","200M","400M","800M"],
+          "name":"Event Selection: "
+        }
+      }
+    ],
+    "transform": [
+      {"filter":"Event_selection == null || datum.Event == Event_selection"}
+    ],
+
+    "encoding": {"x": {"field": "Year", "type": "temporal"}},
+    "layer": [
+      {
+        "mark": "line",
+        "encoding": {
+          "color": {"field": "Event_1", "type": "nominal","title":"Event"},
+          "y": {"field": "Result", "type": "quantitative","title":"Result (s)"},
+          "strokeWidth": {"value":3}
+        }
+      },
+      {
+        "mark":"point",
+        "encoding": {
+          "color": {"field": "Event_1", "type": "nominal"},
+          "y": {"field": "Result", "type": "quantitative"},
+          "strokeWidth": {"value":6},
+          "tooltip":[
+            {"field":"Event_1", "type": "nominal","title":"Event"},
+            {"field":"Year","type": "temporal","timeUnit":"year", "title":"Year"},
+            {"field":"Name","type":"nominal"},
+            {"field":"Result","type":"quantitative"}
+          ]
+        }
+      }
+        
+      
+    ]
+  }
+  
