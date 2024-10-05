@@ -1,7 +1,6 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "title": "Median house price per suburb (2010-2020)",
-    "width": "container",
+    "width": 500,
     "height": 500,
     "params": [
         {
@@ -18,14 +17,19 @@
     ],
     "projection": {
         "type": "equirectangular",
+        "center": [125, -28],
+        "scale": 500
     },
     "layer": [{
             "data": {
                 "url": "https://raw.githubusercontent.com/MackenzieYand/Viz2_Mackenzie/main/js/states.geojson",
-                "format": { "type": "topojson", "feature": "VIC_LOCALITY_POLYGON_SHP" }
+                "format": {
+                    "type": "json",
+                    "property": "features"
+                }
             },
             "transform": [{
-                "calculate": "'Data is not available in ' + datum.properties.NAME",
+                "calculate": "'Data is not available in ' + datum.properties.STATE_NAME",
                 "as": "note"
             }],
             "mark": {
@@ -41,45 +45,45 @@
                 "url": "https://raw.githubusercontent.com/MackenzieYand/Viz2_Mackenzie/main/data/State_totals.csv"
             },
             "transform": [{
-                    "lookup": "State",
+                    "lookup": "State_1",
                     "from": {
                         "data": {
                             "url": "https://raw.githubusercontent.com/MackenzieYand/Viz2_Mackenzie/main/js/states.geojson",
                             "format": {
-                                "type": "topojson",
-                                "feature": "VIC_LOCALITY_POLYGON_SHP"
+                                "type": "json",
+                                "property": "features"
                             }
                         },
-                        "key": "properties.NAME"
+                        "key": "properties.STATE_NAME"
                     },
                     "as": "geo"
                 },
-                { "filter": "datum.year == Year_selection" }
+                { "filter": "datum.Year == Year_selection" }
             ],
             "mark": { "type": "geoshape", "stroke": "#fff", "strokeWidth": 0.5 },
             "encoding": {
                 "shape": { "field": "geo", "type": "geojson" },
                 "color": {
-                    "field": "price",
+                    "field": "Count",
                     "type": "quantitative",
                     "scale": {
                         "domain": [
-                            400000,
-                            1800000
+                            8000,
+                            1100000
                         ],
                         "scheme": "reds"
                     },
                     "legend": { "format": ".2s" }
                 },
                 "tooltip": [
-                    { "field": "locality", "type": "nominal", "title": "Suburb" },
+                    { "field": "State_1", "type": "nominal", "title": "State" },
                     {
-                        "field": "price",
+                        "field": "Count",
                         "type": "quantitative",
-                        "title": "Median Price",
+                        "title": "Total State Participation",
                         "format": ","
                     },
-                    { "field": "year", "type": "quantitative", "title": "Year" }
+                    { "field": "Year", "type": "quantitative", "title": "Year" }
                 ]
             }
         }
