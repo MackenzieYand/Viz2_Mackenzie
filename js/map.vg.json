@@ -38,7 +38,7 @@
         },
         {
             "data": {
-                "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/6_advanced_examples/data/house_price_by_suburb_long_format.csv"
+                "url": "https://raw.githubusercontent.com/MackenzieYand/Viz2_Mackenzie/main/data/State_totals.csv"
             },
             "transform": [{
                     "lookup": "State",
