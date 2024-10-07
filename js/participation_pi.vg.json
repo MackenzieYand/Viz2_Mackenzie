@@ -1,0 +1,74 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+      "url": "https://raw.githubusercontent.com/MackenzieYand/Viz2_Mackenzie/main/data/Total.csv"
+    },
+    "width": 300,
+    "height": 300,
+    "params": [
+      {
+        "name": "Year_selection",
+        "value": 2020,
+        "bind": {
+          "input": "select",
+          "options": [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023],  
+          "name": "Select Year: "
+        }
+      }
+    ],
+    "transform": [
+      {"filter": "datum.Year == Year_selection"},
+      {
+        "calculate": "datum.Count * datum['%Men']",
+        "as": "Men_Count"
+      },
+      {
+        "calculate": "datum.Count * datum['%Women']",
+        "as": "Women_Count"
+      },
+      {
+        "fold": ["Men_Count", "Women_Count"],
+        "as": ["Gender", "Value"]
+      },
+      {
+        "calculate": "datum.Gender == 'Men_Count' ? 'Men' : 'Women'",
+        "as": "Gender_Label"
+      }
+    ],
+    "mark": {"type": "arc", "innerRadius": 50},
+    "encoding": {
+      "theta": {
+        "field": "Value",
+        "type": "quantitative",
+        "stack": true
+      },
+      "color": {
+        "field": "Gender_Label",
+        "type": "nominal",
+        "scale": {
+          "domain": ["Men", "Women"],
+          "range": ["blue", "deeppink"]
+        },
+        "legend": {"title": "Gender"}
+      },
+      "tooltip": [
+        {"field": "Gender_Label", "type": "nominal", "title": "Gender"},
+        {"field": "Value", "type": "quantitative", "title": "Count"}
+      ]
+    },
+    "config": {
+      "background": "#ffd700",
+      "title": {
+        "color": "black",
+        "font": "'Roboto', sans-serif",
+        "fontSize": 14
+      },
+      "legend": {
+        "labelFont": "'Roboto', sans-serif",
+        "labelColor": "black",
+        "titleFont": "'Roboto', sans-serif",
+        "titleColor": "black"
+      }
+    }
+  }
+  

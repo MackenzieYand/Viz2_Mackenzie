@@ -4,34 +4,34 @@
       "url": "https://raw.githubusercontent.com/MackenzieYand/Viz2_Mackenzie/main/data/Total.csv"
     },
     "width": 400,
-    "height": 400,
+    "height": 200,
     "params": [
       {
         "name": "Type_selection",
-        "value": "Total", 
+        "value": "Total",
         "bind": {
           "input": "select",
-          "options": ["Total", "Outdoor", "Futsal", "Social", "School", "Other"],  
+          "options": ["Total", "Outdoor", "Futsal", "Social", "School", "Other"],
           "name": "Category Selection: "
         }
       }
     ],
     "transform": [
-      {"filter": "datum.Type == Type_selection"},  
+      {"filter": "datum.Type == Type_selection"},
       {
-        "calculate": "round(datum.Count * datum['%Men'])",  
+        "calculate": "round(datum.Count * datum['%Men'])",
         "as": "Men_Count"
       },
       {
-        "calculate": "round(datum.Count * datum['%Women'])",  
+        "calculate": "round(datum.Count * datum['%Women'])",
         "as": "Women_Count"
       },
       {
-        "fold": ["Count", "Men_Count", "Women_Count"], 
+        "fold": ["Count", "Men_Count", "Women_Count"],
         "as": ["Legend_Type", "Value"]
       },
       {
-        "calculate": "datum.Legend_Type == 'Count' ? 'Total' : datum.Legend_Type == 'Men_Count' ? 'Men' : 'Women'", 
+        "calculate": "datum.Legend_Type == 'Count' ? 'Total' : datum.Legend_Type == 'Men_Count' ? 'Men' : 'Women'",
         "as": "Legend_Label"
       }
     ],
@@ -44,15 +44,15 @@
     },
     "layer": [
       {
-        "mark":{
-            "type": "line",
-            "strokeWidth": 5
+        "mark": {
+          "type": "line",
+          "strokeWidth": 5 
         },
         "encoding": {
           "y": {
-            "field": "Count", 
+            "field": "Count",
             "type": "quantitative",
-            "title": "Count"
+            "title": "Number of Participants"
           },
           "color": {
             "value": "#006747"
@@ -65,17 +65,17 @@
         }
       },
       {
-        "mark":{
-            "type": "line",
-            "strokeWidth": 3
+        "mark": {
+          "type": "line",
+          "strokeWidth": 3
         },
         "encoding": {
           "y": {
-            "field": "Men_Count", 
+            "field": "Men_Count",
             "type": "quantitative"
           },
           "color": {
-            "value": "blue"  
+            "value": "blue"
           },
           "tooltip": [
             {"field": "Type_1", "type": "nominal", "title": "Catergory"},
@@ -85,17 +85,17 @@
         }
       },
       {
-        "mark":{
-            "type": "line",
-            "strokeWidth": 3
+        "mark": {
+          "type": "line",
+          "strokeWidth": 3
         },
         "encoding": {
           "y": {
-            "field": "Women_Count",  
+            "field": "Women_Count",
             "type": "quantitative"
           },
           "color": {
-            "value": "deeppink"  
+            "value": "deeppink"
           },
           "tooltip": [
             {"field": "Type_1", "type": "nominal", "title": "Catergory"},
@@ -104,28 +104,29 @@
           ]
         }
       }
-      
     ],
     "config": {
-        "background": "#ffd700",  
-        "title": {
-            "color": "#006747",  
-            "font": "'Roboto', sans-serif", 
-            "fontSize": 14  
-        },
-        "axis": {
-            "labelFont": "'Roboto', sans-serif",  
-            "labelColor": "#006747",  
-            "titleFont": "'Roboto', sans-serif", 
-            "titleColor": "#006747"  
-        },
-        "legend": {
-            "labelFont": "'Roboto', sans-serif",
-            "labelColor": "#006747" ,  
-            "titleFont": "'Roboto', sans-serif",
-            "titleColor": "#006747"  
-        }
+      "background":"#ffe342",  
+      "title": {
+        "color": "black",  
+        "font": "'Roboto', sans-serif", 
+        "fontSize": 14
+      },
+      "axis": {
+        "labelFont": "'Roboto', sans-serif",  
+        "labelColor": "black",  
+        "titleFont": "'Roboto', sans-serif",
+        "titleColor": "black",
+        "gridColor": "black",
+        "domainColor": "black",
+        "gridDash": [2, 2]  
+      },
+      "legend": {
+        "labelFont": "'Roboto', sans-serif",
+        "labelColor": "black",
+        "titleFont": "'Roboto', sans-serif",
+        "titleColor": "black"
+      }
     }
-    
-}
+  }
   

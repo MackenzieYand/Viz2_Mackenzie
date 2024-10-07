@@ -74,7 +74,7 @@
             "field": "Participation",
             "type": "quantitative",
             "scale": {
-              "domain": [0, 100],
+              "domain": [0, 12],
               "scheme": "yellowgreen"
             },
             "legend": { "format": ".2s" }
