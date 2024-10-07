@@ -6,24 +6,26 @@
     "width": 300,
     "height": 300,
     "params": [
-      {
-        "name": "Year_selection",
-        "value": 2020,
-        "bind": {
-          "input": "select",
-          "options": [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023],  
-          "name": "Select Year: "
+        {
+            "name": "Year_selection",
+            "value": 2020,
+            "bind": {
+                "input": "range",
+                "min": 2015,
+                "max": 2023,
+                "step": 1,
+                "name": "Select Year: "
+            }
         }
-      }
     ],
     "transform": [
       {"filter": "datum.Year == Year_selection"},
       {
-        "calculate": "datum.Count * datum['%Men']",
+        "calculate": "round(datum.Count * datum['%Men'])",
         "as": "Men_Count"
       },
       {
-        "calculate": "datum.Count * datum['%Women']",
+        "calculate": "round(datum.Count * datum['%Women'])",
         "as": "Women_Count"
       },
       {
@@ -57,7 +59,7 @@
       ]
     },
     "config": {
-      "background": "#ffd700",
+      "background": "#ffe342",
       "title": {
         "color": "black",
         "font": "'Roboto', sans-serif",

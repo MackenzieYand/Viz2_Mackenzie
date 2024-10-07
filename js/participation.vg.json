@@ -19,15 +19,7 @@
     "transform": [
       {"filter": "datum.Type == Type_selection"},
       {
-        "calculate": "round(datum.Count * datum['%Men'])",
-        "as": "Men_Count"
-      },
-      {
-        "calculate": "round(datum.Count * datum['%Women'])",
-        "as": "Women_Count"
-      },
-      {
-        "fold": ["Count", "Men_Count", "Women_Count"],
+        "fold": ["Count"],
         "as": ["Legend_Type", "Value"]
       },
       {
@@ -63,47 +55,7 @@
             {"field": "Count", "type": "quantitative", "title": "Total Count"}
           ]
         }
-      },
-      {
-        "mark": {
-          "type": "line",
-          "strokeWidth": 3
-        },
-        "encoding": {
-          "y": {
-            "field": "Men_Count",
-            "type": "quantitative"
-          },
-          "color": {
-            "value": "blue"
-          },
-          "tooltip": [
-            {"field": "Type_1", "type": "nominal", "title": "Catergory"},
-            {"field": "Year", "type": "temporal", "timeUnit": "year", "title": "Year"},
-            {"field": "Men_Count", "type": "quantitative", "title": "Men Count"}
-          ]
-        }
-      },
-      {
-        "mark": {
-          "type": "line",
-          "strokeWidth": 3
-        },
-        "encoding": {
-          "y": {
-            "field": "Women_Count",
-            "type": "quantitative"
-          },
-          "color": {
-            "value": "deeppink"
-          },
-          "tooltip": [
-            {"field": "Type_1", "type": "nominal", "title": "Catergory"},
-            {"field": "Year", "type": "temporal", "timeUnit": "year", "title": "Year"},
-            {"field": "Women_Count", "type": "quantitative", "title": "Women Count"}
-          ]
-        }
-      }
+      }  
     ],
     "config": {
       "background":"#ffe342",  
