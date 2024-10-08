@@ -11,13 +11,15 @@
         "value": "Total",
         "bind": {
           "input": "select",
-          "options": ["Total", "Outdoor", "Futsal", "Social", "School", "Other"],
+          "options": ["Total", "Outdoor", "Futsal", "Social", "School", "Other", "Compare"],
           "name": "Category Selection: "
         }
       }
     ],
     "transform": [
-      {"filter": "datum.Type == Type_selection"},
+      {
+        "filter": "Type_selection == 'Compare' ? datum.Type != 'Total' : datum.Type == Type_selection"
+      },
       {
         "fold": ["Count"],
         "as": ["Legend_Type", "Value"]
@@ -47,31 +49,61 @@
             "title": "Number of Participants"
           },
           "color": {
-            "value": "#006747"
+            "scale": {
+              "scheme": "accent"},
+            "field": "Type_1",
+            "type": "nominal",
+            "legend": {"title": "Category"}
           },
           "tooltip": [
-            {"field": "Type_1", "type": "nominal", "title": "Catergory"},
+            {"field": "Type_1", "type": "nominal", "title": "Category"},
             {"field": "Year", "type": "temporal", "timeUnit": "year", "title": "Year"},
             {"field": "Count", "type": "quantitative", "title": "Total Count"}
           ]
         }
-      }  
+      },
+      {
+        "mark": {
+          "type": "point",
+          "size": 200,
+          "filled": true,
+          "color": "white"
+        },
+        "encoding": {
+          "x": {
+            "field": "Year",
+            "type": "temporal"
+          },
+          "y": {
+            "field": "Count",
+            "type": "quantitative"
+          },
+          "tooltip": [
+            {"field": "Type_1", "type": "nominal", "title": "Category"},
+            {"field": "Year", "type": "temporal", "timeUnit": "year", "title": "Year"},
+            {"field": "Count", "type": "quantitative", "title": "Total Count"}
+          ]
+        },
+        "transform": [
+          {"filter": "year(datum.Year) == 2020"}
+        ]
+      }
     ],
     "config": {
-      "background":"#ffe342",  
+      "background": "#ffe342",
       "title": {
-        "color": "black",  
-        "font": "'Roboto', sans-serif", 
+        "color": "black",
+        "font": "'Roboto', sans-serif",
         "fontSize": 14
       },
       "axis": {
-        "labelFont": "'Roboto', sans-serif",  
-        "labelColor": "black",  
+        "labelFont": "'Roboto', sans-serif",
+        "labelColor": "black",
         "titleFont": "'Roboto', sans-serif",
         "titleColor": "black",
         "gridColor": "black",
         "domainColor": "black",
-        "gridDash": [2, 2]  
+        "gridDash": [2, 2]
       },
       "legend": {
         "labelFont": "'Roboto', sans-serif",
