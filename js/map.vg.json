@@ -65,19 +65,19 @@
             }
           },
           { "filter": "datum.Year == Year_selection" },
-          { "calculate": "(datum.Count/datum.Population)*100", "as": "Participation Per 100 People" }
+          { "calculate": "(datum.Count/datum.Population)*100", "as": "Participation" }
         ],
         "mark": { "type": "geoshape", "stroke": "#fff", "strokeWidth": 0.5 },
         "encoding": {
           "shape": { "field": "geometry", "type": "geojson" },
           "color": {
-            "field": "Participation Per 100 People",
+            "field": "Participation",
             "type": "quantitative",
             "scale": {
-              "domain": [0, 12],
+              "domain": [0, 13],
               "scheme": "yellowgreen"
             },
-            "legend": { "format": ".2s" }
+            "legend": { "format": ".2s", "title": "Participation per 100 people" }
           },
           "tooltip": [
             { "field": "State_1", "type": "nominal", "title": "State" },
@@ -85,7 +85,7 @@
               "field": "Participation",
               "type": "quantitative",
               "title": "State Participation per 100 people",
-              "format": ","
+              "format": ".2f"
             },
             { "field": "Year", "type": "quantitative", "title": "Year" }
           ]
