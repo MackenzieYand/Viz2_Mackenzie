@@ -22,7 +22,7 @@
           "y": {
             "field": "Total_1",
             "type": "quantitative",
-            "title": "Number of Participants"
+            "title": "Number of Attendees per year"
           },
           "color": {
             "value": "#006747"

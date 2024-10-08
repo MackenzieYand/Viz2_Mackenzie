@@ -122,14 +122,17 @@ p{
 
 .map-section {
     display: flex;
-    justify-content: center; /* Centers the entire section */
-    align-items: center; /* Vertically aligns content */
+    justify-content: left; /* Centers the entire section */
+    align-items: left; /* Vertically aligns content */
     margin-bottom: 20px;
+    padding-right: 200px;
     padding: 20px 0; /* Adds some spacing at the top and bottom */
+    width: 140%; /* Adjust width as needed */
 }
 
 .map-box {
     text-align: center; /* Centers the content inside the map section */
+    align-items: right;
 }
 
 .text-box {

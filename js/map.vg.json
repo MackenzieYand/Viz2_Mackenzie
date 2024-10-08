@@ -65,13 +65,13 @@
             }
           },
           { "filter": "datum.Year == Year_selection" },
-          { "calculate": "(datum.Count/datum.Population)*100", "as": "Participation" }
+          { "calculate": "(datum.Count/datum.Population)*100", "as": "Participation Per 100 People" }
         ],
         "mark": { "type": "geoshape", "stroke": "#fff", "strokeWidth": 0.5 },
         "encoding": {
           "shape": { "field": "geometry", "type": "geojson" },
           "color": {
-            "field": "Participation",
+            "field": "Participation Per 100 People",
             "type": "quantitative",
             "scale": {
               "domain": [0, 12],
