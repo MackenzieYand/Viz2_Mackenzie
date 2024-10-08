@@ -45,7 +45,7 @@
             </div>
         </section>
         <section class="content">
-            <h3>Participation By State</h3>
+            <h6>Participation By State</h6>
             <div class="pure-g map-section">
                 <div class="pure-u-1-5 text-box">
                     <h4>Continued Growth</h4>
@@ -60,8 +60,8 @@
             <div class="pure-g">
                 <div class="pure-u-1-2 highlight-box">
                     <h3>A-League Attendance</h3>
-                    <p>Line plot of Attendance over the years.</p>
-                    <div id="vis2" class="vis-container"></div>
+                    <p>The growth seen in participation is interestingly contrasted by a decrease in support for the A-league Australias soccer league, with many teams seeing a lower turnout year on year.</p>
+                    <div id="vis5" class="vis-container"></div>
                 </div>
                 <div class="pure-u-1-2 highlight-box">
                     <h3>Per club attendance</h3>
@@ -75,6 +75,7 @@
             var specVis2 = "js/participation.vg.json";
             var specVis3 = "js/participation_pi.vg.json";
             var specVis4 = "js/attendance_stacked.vg.json";
+            var specVis5 = "js/my_sanky.vg.json";
     
             vegaEmbed('#vis1', specVis1, { "actions": false });
     
@@ -83,6 +84,7 @@
             }).catch(console.error);
             vegaEmbed('#vis3', specVis3, { "actions": false });
             vegaEmbed('#vis4', specVis4, { "actions": false });
+            vegaEmbed('#vis5', specVis5, { "actions": false });
         </script>
     </main>
 
