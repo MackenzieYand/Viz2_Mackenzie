@@ -1,0 +1,61 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+      "url": "https://raw.githubusercontent.com/MackenzieYand/Viz2_Mackenzie/main/data/aleague/attendance.csv"
+    },
+    "width": 400,
+    "height": 500,
+    "encoding": {
+      "x": {
+        "field": "Year",
+        "type": "temporal",
+        "title": "Year"
+      }
+    },
+    "layer": [
+      {
+        "mark": {
+          "type": "line",
+          "strokeWidth": 5 
+        },
+        "encoding": {
+          "y": {
+            "field": "Total_1",
+            "type": "quantitative",
+            "title": "Number of Participants"
+          },
+          "color": {
+            "value": "#006747"
+          },
+          "tooltip": [
+            {"field": "Year", "type": "temporal", "timeUnit": "year", "title": "Year"},
+            {"field": "Total_1", "type": "quantitative", "title": "Total Count"}
+          ]
+        }
+      }
+    ],
+    "config": {
+      "background": "#ffe342",
+      "title": {
+        "color": "black",
+        "font": "'Roboto', sans-serif",
+        "fontSize": 14
+      },
+      "axis": {
+        "labelFont": "'Roboto', sans-serif",
+        "labelColor": "black",
+        "titleFont": "'Roboto', sans-serif",
+        "titleColor": "black",
+        "gridColor": "black",
+        "domainColor": "black",
+        "gridDash": [2, 2]
+      },
+      "legend": {
+        "labelFont": "'Roboto', sans-serif",
+        "labelColor": "black",
+        "titleFont": "'Roboto', sans-serif",
+        "titleColor": "black"
+      }
+    }
+  }
+  
